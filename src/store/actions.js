@@ -23,11 +23,11 @@ export const getLocationData = () => {
 }
 }
 
-export const getGeoLocationWeatherData = (latitude, longitude) => {
+export const getGeoLocationWeatherData = (latitude, longitude, units) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=6ee8943c317994588d6fa65bc848deae`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=6ee8943c317994588d6fa65bc848deae`
       );
       const action = {
         type: 'GEO_LOCATION_WEATHER_DATA',

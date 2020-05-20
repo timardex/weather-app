@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Header = () => {
+const Header = (props) => {
+  const {clouds, main, name, sys, weather, wind} = props;
+  console.log(props)
   return(
     <header>
-      This is header
+      <div className="city-name">
+        {name}
+      </div>
     </header>
   )
 }

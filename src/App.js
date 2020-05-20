@@ -1,17 +1,19 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import Header from './components/Header';
 import {getLocationData, getGeoLocationWeatherData} from './store/actions';
+
+import Header from './components/Header';
 
 import './App.scss';
 
 const App = (props) => {
   const { getLocationData, getGeoLocationWeatherData, latitude, longitude, weatherData } = props;
+  const tempUnit = 'metric';
 
   useEffect(() => {
     getLocationData();
     if(latitude && longitude) {
-      getGeoLocationWeatherData(latitude, longitude)
+      getGeoLocationWeatherData(latitude, longitude, tempUnit)
     }
   }, [getLocationData, latitude, longitude, getGeoLocationWeatherData])
 
@@ -19,7 +21,7 @@ const App = (props) => {
     <div className="App">
       <main>
         <div className="container">
-        <Header />
+          <Header {...weatherData}/>
         </div>
       </main>
     </div>
@@ -39,8 +41,8 @@ const mapDispatchToProps = (dispatch) => {
     getLocationData: () => {
       dispatch(getLocationData())
     },
-    getGeoLocationWeatherData: (latitude, longitude) => {
-      dispatch(getGeoLocationWeatherData(latitude, longitude))
+    getGeoLocationWeatherData: (latitude, longitude, tempUnit) => {
+      dispatch(getGeoLocationWeatherData(latitude, longitude, tempUnit))
     }
   }
 }
