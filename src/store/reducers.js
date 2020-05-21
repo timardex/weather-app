@@ -1,6 +1,6 @@
 const reducer = (state = {}, action) => {
   switch(action.type) {
-    case 'GET_LOCATION_DATA':
+    case 'GET_GEO_LOCATION_DATA':
       return {
         ...state,
         latitude: action.payload.latitude,
@@ -10,6 +10,11 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         weatherData: action.payload
+      }
+    case 'GET_CITY_NAME':
+      return {
+        ...state,
+        cityName: action.payload
       }
     default:
       return state

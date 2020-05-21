@@ -1,13 +1,13 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {connect} from 'react-redux';
-import {getLocationData, getGeoLocationWeatherData} from './store/actions';
+import {getGeoLocationData, getGeoLocationWeatherData, getCityName} from './store/actions';
 
 import Main from './components/Main';
 
 import './App.scss';
 
 const App = (props) => {
-  const { getLocationData, getGeoLocationWeatherData, latitude, longitude, weatherData } = props;
+  const { getGeoLocationData, getGeoLocationWeatherData, getCityName, latitude, longitude, weatherData, cityName } = props;
   const [tempUnit, setTempUnit] = useState({
     unit: 'metric',
     toggle: false
@@ -22,11 +22,14 @@ const App = (props) => {
   }, [tempUnit])
 
   useEffect(() => {
-    getLocationData();
+    getCityName();
+    getGeoLocationData();
     if(latitude && longitude) {
       getGeoLocationWeatherData(latitude, longitude, tempUnit.unit)
     }
-  }, [getLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit])
+  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit])
+
+  console.log(cityName)
 
   return (
     <div className="App">
@@ -39,17 +42,21 @@ const mapStateToProps = (state) => {
   return {
     weatherData: state.weatherData,
     latitude: state.latitude,
-    longitude: state.longitude
+    longitude: state.longitude,
+    cityName: state.cityName
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLocationData: () => {
-      dispatch(getLocationData())
+    getGeoLocationData: () => {
+      dispatch(getGeoLocationData())
     },
     getGeoLocationWeatherData: (latitude, longitude, tempUnit) => {
       dispatch(getGeoLocationWeatherData(latitude, longitude, tempUnit))
+    },
+    getCityName: () => {
+      dispatch(getCityName())
     }
   }
 }

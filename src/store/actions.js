@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getLocationData = () => {
+export const getGeoLocationData = () => {
   return function (dispatch) {
     return new Promise((resolve, reject) => {
         if (!navigator.geolocation) {
@@ -8,7 +8,7 @@ export const getLocationData = () => {
         }
         navigator.geolocation.getCurrentPosition((position) => {
             const action = {
-                type: 'GET_LOCATION_DATA',
+                type: 'GET_GEO_LOCATION_DATA',
                 payload: {
                   latitude: position.coords.latitude,
                   longitude: position.coords.longitude
@@ -20,7 +20,7 @@ export const getLocationData = () => {
             reject(new Error('Permission denied'));
         });
     });
-}
+  }
 }
 
 export const getGeoLocationWeatherData = (latitude, longitude, units) => {
@@ -31,6 +31,23 @@ export const getGeoLocationWeatherData = (latitude, longitude, units) => {
       );
       const action = {
         type: 'GEO_LOCATION_WEATHER_DATA',
+        payload: result.data
+      }
+      dispatch(action)
+    } catch (error) {
+      return error;
+    }
+  }
+}
+
+export const getCityName = () => {
+  return async function(dispatch) {
+    try {
+      const result = await axios.get(
+        `https://restcountries.eu/rest/v2/all`
+      );
+      const action = {
+        type: 'GET_CITY_NAME',
         payload: result.data
       }
       dispatch(action)
