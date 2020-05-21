@@ -1,0 +1,45 @@
+@import '../../assets/scss/variables.scss';
+
+main {
+  width: 100%;
+  max-width: 375px;
+  margin: auto;
+  height: calc(100vh * (8.6 / 11.6));
+  overflow: hidden;
+  color: $color1;
+  position: relative;
+  padding: 5rem 2rem 2rem;
+
+  &.clouds, &.clear {
+    background: $color2;
+  }
+
+  .unit-change {
+    cursor: pointer;
+    position: absolute;
+    top: 1rem; right: 1rem;
+  }
+
+  .container {
+    width: 100%;
+    overflow-y: auto;
+  }
+
+  .more-details {
+    cursor: pointer;
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .weather-bg {
+    position: absolute;
+    left: 0; bottom: -5px;
+    width: 100%;
+    text-align: center;
+
+    svg {
+      width: 100%;
+    }
+  }
+}

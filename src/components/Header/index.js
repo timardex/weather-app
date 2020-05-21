@@ -4,18 +4,21 @@ import {Search} from '../../assets/svg/Search';
 import './style.scss';
 
 const Header = (props) => {
-  const {setTempUnit, tempUnit} = props;
-  const {/* clouds, */ main, name /* sys, weather, wind */} = props;
-  console.log(props)
-  const {temp /* feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
+  const {cityName, temperature, weatherIcon, getWeatherType, tempUnit} = props;
+
   return(
     <header>
       <div className="city-name">
-        {name} <Search />
+        <input type="text" id="search" defaultValue={cityName || ''} /> <Search />
       </div>
-      <div className="temperature" onClick={() => setTempUnit()}>
-        {parseInt(temp)} <span className="units">{tempUnit ? 'F' : 'C'}</span>
+      <div className="weather-info">
+        <div className="temperature">{parseInt(temperature).toString()}</div>
+        <div className="units">
+          {tempUnit ? 'F' : 'C'}
+          {weatherIcon()}
+        </div>
       </div>
+      <div className="weather-type">{getWeatherType}</div>
     </header>
   )
 }

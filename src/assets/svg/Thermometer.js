@@ -66,4 +66,3 @@ export const Thermometer = () => {
   );
 };
 
-export default Thermometer;

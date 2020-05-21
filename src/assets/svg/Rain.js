@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Raining = () => {
+export const Rain = () => {
   return (
     <svg
       width="36"
@@ -45,4 +45,3 @@ export const Raining = () => {
   );
 };
 
-export default Raining;

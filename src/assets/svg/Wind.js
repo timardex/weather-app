@@ -27,4 +27,3 @@ export const Wind = () => {
   );
 };
 
-export default Wind;

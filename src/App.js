@@ -2,7 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {getLocationData, getGeoLocationWeatherData} from './store/actions';
 
-import Header from './components/Header';
+import Main from './components/Main';
 
 import './App.scss';
 
@@ -30,11 +30,7 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <main>
-        <div className="container">
-          <Header {...weatherData} setTempUnit={handleTempUnit} tempUnit={tempUnit.toggle}/>
-        </div>
-      </main>
+      <Main weatherData={weatherData} setTempUnit={handleTempUnit} tempUnit={tempUnit.toggle}/>
     </div>
   );
 }

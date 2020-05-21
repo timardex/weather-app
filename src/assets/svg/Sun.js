@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Sunny = () => {
+export const Sun = () => {
   return (
     <svg
       width="29"
@@ -9,15 +9,15 @@ export const Sunny = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="14" cy="14" r="6.25" stroke="#FBEDA7" stroke-width="1.5" />
+      <circle cx="14" cy="14" r="6.25" stroke="#FBEDA7" strokeWidth="1.5" />
       <line
         x1="14.4167"
         y1="5.08334"
         x2="14.4167"
         y2="0.75001"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <line
         x1="14.4167"
@@ -25,8 +25,8 @@ export const Sunny = () => {
         x2="14.4167"
         y2="22.9167"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <line
         x1="5.08331"
@@ -34,26 +34,26 @@ export const Sunny = () => {
         x2="0.749979"
         y2="13.5833"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <path
         d="M27.4167 14L23.3334 14"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <path
         d="M21 7.55402L23.8874 4.66666"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <path
         d="M4.66669 23.8874L7.55404 21"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <line
         x1="4.56066"
@@ -61,8 +61,8 @@ export const Sunny = () => {
         x2="7.62479"
         y2="7.73079"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <line
         x1="20.894"
@@ -70,11 +70,9 @@ export const Sunny = () => {
         x2="23.9581"
         y2="24.0641"
         stroke="#FBEDA7"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );
 };
-
-export default Sunny;

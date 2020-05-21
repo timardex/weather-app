@@ -2,16 +2,37 @@
 
 header {
   width: 100%;
+
   .city-name {
-    font-size: 18px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    input {
+      width: auto;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: $color1;
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 700;
+      max-width: 100px;
+      margin-right: .5rem;
+    }
   }
 
-  .temperature {
-    cursor: pointer;
-    font-size: 96px;
-    line-height: 5rem;
+  .weather-info {
     display: inline-flex;
     justify-content: flex-start;
+
+    .temperature {
+      font-size: 96px;
+      line-height: 5rem;
+      position: relative;
+      left: -5px;
+    }
 
     .units {
       position: relative;
@@ -28,5 +49,17 @@ header {
         border-radius: 50%;
       }
     }
+
+    svg {
+      position: absolute;
+      top: 2.5rem; left: -1rem;
+    }
+  }
+
+  .weather-type {
+    font-size: 25px;
+    text-transform: capitalize;
+    margin-top: .5rem;
+    font-weight: 700;
   }
 }

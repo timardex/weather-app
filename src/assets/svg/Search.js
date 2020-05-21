@@ -24,4 +24,3 @@ export const Search = () => {
   );
 };
 
-export default Search;
