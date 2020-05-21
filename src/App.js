@@ -7,17 +7,21 @@ import Main from './components/Main';
 import './App.scss';
 
 const App = (props) => {
-  const { getGeoLocationData, getGeoLocationWeatherData, getCityName, latitude, longitude, weatherData, cityName } = props;
+  const {
+    getGeoLocationData,
+    getGeoLocationWeatherData,
+    getCityName,
+    latitude,
+    longitude,
+    weatherData } = props;
+
   const [tempUnit, setTempUnit] = useState({
-    unit: 'metric',
-    toggle: false
+    unit: 'metric', toggle: false
   });
 
   const handleTempUnit = useCallback(() => {
     setTempUnit({
-      ...tempUnit,
-      toggle: !tempUnit.toggle,
-      unit: tempUnit.toggle ? 'metric' : 'imperial',
+      ...tempUnit, toggle: !tempUnit.toggle, unit: tempUnit.toggle ? 'metric' : 'imperial',
     })
   }, [tempUnit])
 
@@ -27,9 +31,7 @@ const App = (props) => {
     if(latitude && longitude) {
       getGeoLocationWeatherData(latitude, longitude, tempUnit.unit)
     }
-  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit])
-
-  console.log(cityName)
+  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit, getCityName])
 
   return (
     <div className="App">
@@ -42,8 +44,7 @@ const mapStateToProps = (state) => {
   return {
     weatherData: state.weatherData,
     latitude: state.latitude,
-    longitude: state.longitude,
-    cityName: state.cityName
+    longitude: state.longitude
   }
 }
 

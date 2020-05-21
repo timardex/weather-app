@@ -14,7 +14,7 @@ const reducer = (state = {}, action) => {
     case 'GET_CITY_NAME':
       return {
         ...state,
-        cityName: action.payload
+        restCityName: action.payload
       }
     default:
       return state

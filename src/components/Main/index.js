@@ -18,8 +18,6 @@ const Main = (props) => {
   const {weather, main, name/* , sys, clouds, wind */} = weatherData ? weatherData : '';
   const {temp/* , feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
 
-  console.log(weatherData)
-
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
   const weatherIcon = () => {
     switch(getWeatherType) {
@@ -53,7 +51,7 @@ const Main = (props) => {
         Change to {tempUnit ? 'Celsius' : 'Fahrenheit'}
       </div>
       <div className="container">
-        <Header cityName={name} temperature={temp} weatherIcon={weatherIcon} getWeatherType={getWeatherType} tempUnit={tempUnit}/>
+        <Header currentCity={name} temperature={temp} weatherIcon={weatherIcon} getWeatherType={getWeatherType} tempUnit={tempUnit}/>
         <p className="more-details">More details <Details /></p>
       </div>
 
