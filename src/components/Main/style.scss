@@ -8,25 +8,35 @@ main {
   overflow: hidden;
   color: $color1;
   position: relative;
-  padding: 5rem 2rem 2rem;
+  padding: 2rem;
 
   &.clouds, &.clear {
     background: $color2;
   }
 
-  &.rain {
+  &.rain, &.thunderstorm {
     background: $color3;
+  }
+
+  .refresh {
+    cursor: pointer;
+    position: absolute;
+    top: 2rem; left: 2rem;
+    svg {
+      fill: $color1;
+    }
   }
 
   .unit-change {
     cursor: pointer;
     position: absolute;
-    top: 1rem; right: 1rem;
+    top: 2rem; right: 2rem;
   }
 
   .container {
     width: 100%;
     overflow-y: auto;
+    padding-top: 2.5rem;
   }
 
   .more-details {

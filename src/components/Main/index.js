@@ -9,12 +9,14 @@ import {Rain} from '../../assets/svg/Rain';
 import {CloudsBig} from '../../assets/svg/CloudsBig';
 import {SunBig} from '../../assets/svg/SunBig';
 import {RainBig} from '../../assets/svg/RainBig';
+
 import {Details} from '../../assets/svg/Details';
+
 
 import './style.scss';
 
 const Main = (props) => {
-  const {weatherDataNotFound, weatherData, setTempUnit, tempUnit} = props;
+  const {weatherDataNotFound, weatherData, setTempUnit, tempUnit, refreshWeatherData} = props;
   const {weather, main, name/* , sys, clouds, wind */} = weatherData ? weatherData : '';
   const {temp/* , feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
 
@@ -24,6 +26,8 @@ const Main = (props) => {
       case 'clouds':
         return <Clouds />
       case 'rain':
+        return <Rain />
+      case 'thunderstorm':
         return <Rain />
       case 'clear':
           return <Sun />
@@ -37,6 +41,8 @@ const Main = (props) => {
       case 'clouds':
         return <CloudsBig />
       case 'rain':
+        return <RainBig />
+      case 'thunderstorm':
         return <RainBig />
       case 'clear':
           return <SunBig />
@@ -52,11 +58,15 @@ const Main = (props) => {
   
   return (
     <main className={getWeatherType}>
-      <div className="unit-change" onClick={() => setTempUnit()}>
-        Change to {tempUnit ? 'Celsius' : 'Fahrenheit'}
-      </div>
       <div className="container">
-        <Header currentCity={name} temperature={temp} weatherIcon={weatherIcon} getWeatherType={getWeatherType} tempUnit={tempUnit}/>
+        <Header
+          currentCity={name}
+          refreshWeatherData={refreshWeatherData}
+          temperature={temp}
+          weatherIcon={weatherIcon}
+          getWeatherType={getWeatherType}
+          setTempUnit={setTempUnit}
+          tempUnit={tempUnit}/>
         <p className="more-details">More details <Details /></p>
       </div>
 
