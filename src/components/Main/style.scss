@@ -14,6 +14,10 @@ main {
     background: $color2;
   }
 
+  &.rain {
+    background: $color3;
+  }
+
   .unit-change {
     cursor: pointer;
     position: absolute;
@@ -40,6 +44,22 @@ main {
 
     svg {
       width: 100%;
+    }
+  }
+
+  .weather-data-error {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+    p {
+      padding: 1rem;
+      margin: 0;
     }
   }
 }

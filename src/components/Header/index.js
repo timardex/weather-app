@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import {Search} from '../../assets/svg/Search';
+
+import {getCityName} from '../../store/actions';
 
 import './style.scss';
 
 const Header = (props) => {
-  const {currentCity, temperature, weatherIcon, getWeatherType, tempUnit, restCityName} = props;
-
+  const {currentCity, temperature, weatherIcon, getWeatherType, tempUnit, getCityName} = props;
   const [city, findCity] = useState();
 
-  const getCapital = () => {
-    return restCityName ? restCityName.map(value => value.capital.toLowerCase()).filter(value => value.includes(city)) : []
-  }
+  useEffect(() => {
+    findCity(currentCity)
+  }, [currentCity])
 
   return(
     <header>
       <div className="city-name">
-        <input type="text" id="search" defaultValue={currentCity || ''} onChange={e => findCity(e.target.value.toLowerCase())} /> <Search />
-        <ul>
-          {getCapital().map((value, key) => {
-            return (<li key={key}>{value}</li>)
-          })}
-        </ul>
+        <input type="text" id="search" defaultValue={currentCity || ''}
+          onChange={e => findCity(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
+          onKeyDown={e => e.keyCode === 13 ? getCityName(city) : null}/>
+        <div className="search" onClick={() => getCityName(city)}>
+          <Search />
+        </div>
       </div>
       <div className="weather-info">
         <div className="temperature">{parseInt(temperature).toString()}</div>
@@ -35,10 +36,12 @@ const Header = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    restCityName: state.restCityName
+    getCityName: (city) => {
+      dispatch(getCityName(city))
+    }
   }
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

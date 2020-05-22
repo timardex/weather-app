@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {connect} from 'react-redux';
+
 import Header from '../Header';
 
 import {Clouds} from '../../assets/svg/Clouds';
 import {Sun} from '../../assets/svg/Sun';
 import {Rain} from '../../assets/svg/Rain';
-
 import {CloudsBig} from '../../assets/svg/CloudsBig';
 import {SunBig} from '../../assets/svg/SunBig';
 import {RainBig} from '../../assets/svg/RainBig';
-
 import {Details} from '../../assets/svg/Details';
 
 import './style.scss';
 
 const Main = (props) => {
-  const {weatherData, setTempUnit, tempUnit} = props;
+  const {weatherDataNotFound, weatherData, setTempUnit, tempUnit} = props;
   const {weather, main, name/* , sys, clouds, wind */} = weatherData ? weatherData : '';
   const {temp/* , feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
 
@@ -45,6 +45,11 @@ const Main = (props) => {
     }
   }
 
+  const [toggleError, setToggleError] = useState(false)
+  useEffect(() => {
+    setToggleError(weatherDataNotFound !== undefined)
+  }, [setToggleError, weatherDataNotFound])
+  
   return (
     <main className={getWeatherType}>
       <div className="unit-change" onClick={() => setTempUnit()}>
@@ -58,8 +63,18 @@ const Main = (props) => {
       <div className="weather-bg">
         {weatherBackground()}
       </div>
+
+      {toggleError && <div className="weather-data-error" onClick={() => setToggleError(false)}>
+        <p>{weatherDataNotFound}</p>
+      </div>}
     </main>
   )
 }
 
-export default Main;
+const mapStateToProps = (state) => {
+  return {
+    weatherDataNotFound: state.weatherDataNotFound,
+  }
+}
+
+export default connect(mapStateToProps, null)(Main);

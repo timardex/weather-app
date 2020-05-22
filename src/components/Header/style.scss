@@ -5,7 +5,7 @@ header {
 
   .city-name {
     margin-bottom: 1rem;
-    display: flex;
+    display: inline-flex;
     justify-content: flex-start;
     align-items: center;
 
@@ -18,13 +18,18 @@ header {
       font-size: 18px;
       text-transform: uppercase;
       font-weight: 700;
-      max-width: 100px;
+      max-width: 150px;
       margin-right: .5rem;
+      padding: .3rem .5rem;
+    }
+
+    .search {
+      cursor: pointer;
     }
   }
 
   .weather-info {
-    display: inline-flex;
+    display: flex;
     justify-content: flex-start;
 
     .temperature {

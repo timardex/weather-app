@@ -40,19 +40,33 @@ export const getGeoLocationWeatherData = (latitude, longitude, units) => {
   }
 }
 
-export const getCityName = () => {
+export const getCityWeatherData = (city, units) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
-        `https://restcountries.eu/rest/v2/all`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=6ee8943c317994588d6fa65bc848deae`
       );
       const action = {
-        type: 'GET_CITY_NAME',
+        type: 'CITY_WEATHER_DATA',
         payload: result.data
       }
       dispatch(action)
     } catch (error) {
-      return error;
+      const action = {
+        type: 'CITY_WEATHER_DATA_NOT_FOUND',
+        payload: city === '' ? 'Please eneter a city name.' : `No such city like ${city}, please try again.`
+      }
+      dispatch(action)
     }
+  }
+}
+
+export const getCityName = (city) => {
+  return function(dispatch) {
+    const action = {
+      type: 'CITY_NAME',
+      payload: city
+    }
+    dispatch(action)
   }
 }

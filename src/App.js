@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {connect} from 'react-redux';
-import {getGeoLocationData, getGeoLocationWeatherData, getCityName} from './store/actions';
+import {getGeoLocationData, getGeoLocationWeatherData, getCityWeatherData} from './store/actions';
 
 import Main from './components/Main';
 
@@ -10,10 +10,11 @@ const App = (props) => {
   const {
     getGeoLocationData,
     getGeoLocationWeatherData,
-    getCityName,
+    getCityWeatherData,
     latitude,
     longitude,
-    weatherData } = props;
+    weatherData,
+    cityName } = props;
 
   const [tempUnit, setTempUnit] = useState({
     unit: 'metric', toggle: false
@@ -26,12 +27,17 @@ const App = (props) => {
   }, [tempUnit])
 
   useEffect(() => {
-    getCityName();
-    getGeoLocationData();
-    if(latitude && longitude) {
-      getGeoLocationWeatherData(latitude, longitude, tempUnit.unit)
+    if(cityName === undefined) {
+      getGeoLocationData();
+      if(latitude && longitude) {
+        getGeoLocationWeatherData(latitude, longitude, tempUnit.unit)
+      }
+    } else {
+      getCityWeatherData(cityName, tempUnit.unit)
     }
-  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit, getCityName])
+  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit, cityName, getCityWeatherData])
+
+  console.log(weatherData)
 
   return (
     <div className="App">
@@ -43,6 +49,8 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     weatherData: state.weatherData,
+    weatherDataNotFound: state.weatherDataNotFound,
+    cityName: state.cityName,
     latitude: state.latitude,
     longitude: state.longitude
   }
@@ -56,8 +64,8 @@ const mapDispatchToProps = (dispatch) => {
     getGeoLocationWeatherData: (latitude, longitude, tempUnit) => {
       dispatch(getGeoLocationWeatherData(latitude, longitude, tempUnit))
     },
-    getCityName: () => {
-      dispatch(getCityName())
+    getCityWeatherData: (city, tempUnit) => {
+      dispatch(getCityWeatherData(city, tempUnit))
     }
   }
 }
