@@ -9,17 +9,23 @@ import {Refresh} from '../../assets/svg/Refresh';
 import './style.scss';
 
 const Header = (props) => {
-  const {getCityWeatherData, currentCity, temperature, weatherIcon, getWeatherType, tempUnit, setTempUnit, getCityName, refreshWeatherData, moreDetails, getMoreDetails} = props;
+  const {getCityWeatherData, currentCity, temperature, weatherIcon, getWeatherType, getCityName, refreshWeatherData, moreDetails, getMoreDetails} = props;
   const [city, findCity] = useState();
+  const [toggleTempUnit, setTempUnit] = useState(true);
   
-
   useEffect(() => {
     findCity(currentCity)
   }, [currentCity])
 
   const handleCityWeatherData = () => {
     getCityName(city)
-    getCityWeatherData(city, tempUnit.unit)
+    getCityWeatherData(city)
+  }
+
+  const getTemperatureUnit = () => {
+    const celsiusToFahrenheit = parseInt((temperature * 1.8) + 32);
+    const converted = toggleTempUnit ? parseInt(temperature) : celsiusToFahrenheit;
+    return converted.toString();
   }
    
   return(
@@ -27,8 +33,8 @@ const Header = (props) => {
       <div className="refresh" title="Check my weather data" onClick={() => {refreshWeatherData()}}>
         <Refresh />
       </div>
-      <div className="unit-change" onClick={() => setTempUnit()}>
-        Change to {tempUnit.toggle ? 'Celsius' : 'Fahrenheit'}
+      <div className="unit-change" onClick={() => setTempUnit(!toggleTempUnit)}>
+        Change to {toggleTempUnit ? 'Fahrenheit' : 'Celsius'}
       </div>
       <div className="city-name">
         <input type="text" id="search" value={city || ''}
@@ -39,9 +45,9 @@ const Header = (props) => {
         </div>
       </div>
       <div className="weather-info">
-        <div className="temperature">{parseInt(temperature).toString()}</div>
+        <div className="temperature">{getTemperatureUnit()}</div>
         <div className="units">
-          {tempUnit.toggle ? 'F' : 'C'}
+          {toggleTempUnit ? 'C' : 'F'}
           {!moreDetails && weatherIcon}
         </div>
       </div>

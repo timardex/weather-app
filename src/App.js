@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import {getGeoLocationData, getGeoLocationWeatherData} from './store/actions';
@@ -15,34 +15,22 @@ const App = (props) => {
     longitude,
     weatherData} = props;
 
-  const [tempUnit, setTempUnit] = useState({
-    unit: 'metric', toggle: false
-  });
-
-  const handleTempUnit = useCallback(() => {
-    setTempUnit({
-      ...tempUnit, toggle: !tempUnit.toggle, unit: tempUnit.toggle ? 'metric' : 'imperial',
-    })
-  }, [tempUnit]);
-
   const refreshWeatherData = () => {
-    getGeoLocationWeatherData(latitude, longitude, tempUnit.unit);
+    getGeoLocationWeatherData(latitude, longitude);
   };
 
   useEffect(() => {
     getGeoLocationData();
     if(latitude && longitude) {
-      getGeoLocationWeatherData(latitude, longitude, tempUnit.unit)
+      getGeoLocationWeatherData(latitude, longitude)
     }    
-  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit.unit])
+  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData])
   
   return (
     <div className="App">
       <Main
         weatherData={weatherData}
-        refreshWeatherData={refreshWeatherData}
-        setTempUnit={handleTempUnit}
-        tempUnit={tempUnit}/>
+        refreshWeatherData={refreshWeatherData}/>
     </div>
   );
 }

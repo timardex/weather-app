@@ -23,11 +23,11 @@ export const getGeoLocationData = () => {
   }
 }
 
-export const getGeoLocationWeatherData = (latitude, longitude, units) => {
+export const getGeoLocationWeatherData = (latitude, longitude) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=6ee8943c317994588d6fa65bc848deae`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=6ee8943c317994588d6fa65bc848deae`
       );
       const action = {
         type: 'GEO_LOCATION_WEATHER_DATA',
@@ -44,11 +44,11 @@ export const getGeoLocationWeatherData = (latitude, longitude, units) => {
   }
 }
 
-export const getCityWeatherData = (city, units) => {
+export const getCityWeatherData = (city) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=6ee8943c317994588d6fa65bc848deae`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=6ee8943c317994588d6fa65bc848deae`
       );
       const action = {
         type: 'CITY_WEATHER_DATA',

@@ -9,7 +9,7 @@ import {getCityName} from '../../store/actions';
 import './style.scss';
 
 const Main = (props) => {
-  const {weatherDataNotFound, weatherData, setTempUnit, tempUnit, refreshWeatherData, getCityName} = props;
+  const {weatherDataNotFound, weatherData, refreshWeatherData, getCityName} = props;
   const {weather, main, name/* clouds , sys, clouds, wind */} = weatherData ? weatherData : '';
   const {temp/* , feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
 
@@ -31,8 +31,6 @@ const Main = (props) => {
           weatherIcon={weatherIcon(getWeatherType)}
           getWeatherType={getWeatherType}
           getCityName={getCityName}
-          setTempUnit={setTempUnit}
-          tempUnit={tempUnit}
           moreDetails={moreDetails}
           getMoreDetails={getMoreDetails}/>
       </div>
