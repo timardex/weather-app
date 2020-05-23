@@ -3,58 +3,28 @@ import {connect} from 'react-redux';
 
 import Header from '../Header';
 
-import {Clouds} from '../../assets/svg/Clouds';
-import {Sun} from '../../assets/svg/Sun';
-import {Rain} from '../../assets/svg/Rain';
-import {CloudsBig} from '../../assets/svg/CloudsBig';
-import {SunBig} from '../../assets/svg/SunBig';
-import {RainBig} from '../../assets/svg/RainBig';
-
-import {Details} from '../../assets/svg/Details';
-
+import {weatherIcon, weatherBackground} from '../../helpers/'
+import {getCityName} from '../../store/actions';
 
 import './style.scss';
 
 const Main = (props) => {
-  const {weatherDataNotFound, weatherData, setTempUnit, tempUnit, refreshWeatherData} = props;
-  const {weather, main, name/* , sys, clouds, wind */} = weatherData ? weatherData : '';
+  const {weatherDataNotFound, weatherData, setTempUnit, tempUnit, refreshWeatherData, getCityName} = props;
+  const {weather, main, name/* clouds , sys, clouds, wind */} = weatherData ? weatherData : '';
   const {temp/* , feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
 
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
-  const weatherIcon = () => {
-    switch(getWeatherType) {
-      case 'clouds':
-        return <Clouds />
-      case 'rain':
-        return <Rain />
-      case 'thunderstorm':
-        return <Rain />
-      case 'clear':
-          return <Sun />
-      default:
-        return null
-    }
-  }
 
-  const weatherBackground = () => {
-    switch(getWeatherType) {
-      case 'clouds':
-        return <CloudsBig />
-      case 'rain':
-        return <RainBig />
-      case 'thunderstorm':
-        return <RainBig />
-      case 'clear':
-          return <SunBig />
-      default:
-        return null
-    }
-  }
+  const [toggleError, setToggleError] = useState(false);
+  const [moreDetails, getMoreDetails] = useState(false);
 
-  const [toggleError, setToggleError] = useState(false)
   useEffect(() => {
-    setToggleError(weatherDataNotFound !== undefined)
+    setToggleError(weatherDataNotFound !== undefined);
   }, [setToggleError, weatherDataNotFound])
+
+  useEffect(() => {
+    getCityName(name)
+  }, [getCityName, name])
   
   return (
     <main className={getWeatherType}>
@@ -63,16 +33,18 @@ const Main = (props) => {
           currentCity={name}
           refreshWeatherData={refreshWeatherData}
           temperature={temp}
-          weatherIcon={weatherIcon}
+          weatherIcon={weatherIcon(getWeatherType)}
           getWeatherType={getWeatherType}
+          getCityName={getCityName}
           setTempUnit={setTempUnit}
-          tempUnit={tempUnit}/>
-        <p className="more-details">More details <Details /></p>
+          tempUnit={tempUnit}
+          moreDetails={moreDetails}
+          getMoreDetails={getMoreDetails}/>
       </div>
 
-      <div className="weather-bg">
-        {weatherBackground()}
-      </div>
+      {!moreDetails && <div className="weather-bg">
+        {weatherBackground(getWeatherType)}
+      </div>}
 
       {toggleError && <div className="weather-data-error" onClick={() => setToggleError(false)}>
         <p>{weatherDataNotFound}</p>
@@ -87,4 +59,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Main);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCityName: (city) => {
+      dispatch(getCityName(city))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -35,13 +35,13 @@ const App = (props) => {
     } else {
       getCityWeatherData(cityName, tempUnit.unit)
     }
-  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit, cityName, getCityWeatherData])
+  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData, tempUnit, handleTempUnit, cityName, getCityWeatherData])
 
   
   const refreshWeatherData = () => {
-    getGeoLocationWeatherData(latitude, longitude, tempUnit.unit)
+    getGeoLocationWeatherData(latitude, longitude, tempUnit.unit);
   }
-
+  
   return (
     <div className="App">
       <Main weatherData={weatherData} refreshWeatherData={refreshWeatherData} setTempUnit={handleTempUnit} tempUnit={tempUnit.toggle}/>

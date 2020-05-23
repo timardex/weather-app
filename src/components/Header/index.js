@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import {connect} from 'react-redux';
 
 import {Search} from '../../assets/svg/Search';
+import {Details} from '../../assets/svg/Details';
 import {Refresh} from '../../assets/svg/Refresh';
-
-import {getCityName} from '../../store/actions';
 
 import './style.scss';
 
 const Header = (props) => {
-  const {currentCity, temperature, weatherIcon, getWeatherType, tempUnit, setTempUnit, getCityName, refreshWeatherData} = props;
+  const {currentCity, temperature, weatherIcon, getWeatherType, tempUnit, setTempUnit, getCityName, refreshWeatherData, moreDetails, getMoreDetails} = props;
   const [city, findCity] = useState();
+  
 
   useEffect(() => {
     findCity(currentCity)
   }, [currentCity])
-
+  
   return(
-    <header>
+    <header className={moreDetails ? 'more-details-shown' : ''}>
       <div className="refresh" title="Check my weather data" onClick={() => {refreshWeatherData()}}>
         <Refresh />
       </div>
-      <div className="unit-change" onClick={() => setTempUnit()}>
+      <div className="unit-change" onClick={e => setTempUnit()}>
         Change to {tempUnit ? 'Celsius' : 'Fahrenheit'}
       </div>
       <div className="city-name">
@@ -36,20 +35,14 @@ const Header = (props) => {
         <div className="temperature">{parseInt(temperature).toString()}</div>
         <div className="units">
           {tempUnit ? 'F' : 'C'}
-          {weatherIcon()}
+          {!moreDetails && weatherIcon}
         </div>
       </div>
       <div className="weather-type">{getWeatherType}</div>
+
+      <p className="more-details" onClick={() => getMoreDetails(!moreDetails)}>More details <Details /></p>
     </header>
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCityName: (city) => {
-      dispatch(getCityName(city))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Header);
+export default Header;
