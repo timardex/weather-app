@@ -15,12 +15,7 @@ const Main = (props) => {
 
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
 
-  const [toggleError, setToggleError] = useState(false);
   const [moreDetails, getMoreDetails] = useState(false);
-
-  useEffect(() => {
-    setToggleError(weatherDataNotFound !== undefined);
-  }, [setToggleError, weatherDataNotFound])
 
   useEffect(() => {
     getCityName(name)
@@ -42,12 +37,12 @@ const Main = (props) => {
           getMoreDetails={getMoreDetails}/>
       </div>
 
-      {!moreDetails && <div className="weather-bg">
-        {weatherBackground(getWeatherType)}
+      {weatherDataNotFound && <div className="weather-data-error">
+        {weatherDataNotFound}
       </div>}
 
-      {toggleError && <div className="weather-data-error" onClick={() => setToggleError(false)}>
-        <p>{weatherDataNotFound}</p>
+      {!moreDetails && <div className="weather-bg">
+        {weatherBackground(getWeatherType)}
       </div>}
     </main>
   )

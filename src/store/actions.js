@@ -31,7 +31,11 @@ export const getGeoLocationWeatherData = (latitude, longitude, units) => {
       );
       const action = {
         type: 'GEO_LOCATION_WEATHER_DATA',
-        payload: result.data
+        payload: {
+          success: result.data,
+          cityName: '',
+          error: ''
+        }
       }
       dispatch(action)
     } catch (error) {
@@ -48,13 +52,16 @@ export const getCityWeatherData = (city, units) => {
       );
       const action = {
         type: 'CITY_WEATHER_DATA',
-        payload: result.data
+        payload: {
+          success: result.data,
+          error: ''
+        }
       }
       dispatch(action)
     } catch (error) {
       const action = {
         type: 'CITY_WEATHER_DATA_NOT_FOUND',
-        payload: city === '' ? 'Please eneter a city name.' : `No such city like ${city}, please try again.`
+        payload: city === '' ? 'Please enter a city name.' : `No such city like ${city}, please try again.`
       }
       dispatch(action)
     }

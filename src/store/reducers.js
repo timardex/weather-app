@@ -9,7 +9,9 @@ const reducer = (state = {}, action) => {
     case 'GEO_LOCATION_WEATHER_DATA':
       return {
         ...state,
-        weatherData: action.payload
+        weatherData: action.payload.success,
+        cityName: action.payload.cityName,
+        weatherDataNotFound: action.payload.error
       }
     case 'CITY_NAME':
       return {
@@ -19,7 +21,8 @@ const reducer = (state = {}, action) => {
     case 'CITY_WEATHER_DATA':
       return {
         ...state,
-        weatherData: action.payload
+        weatherData: action.payload.success,
+        weatherDataNotFound: action.payload.error
       }
     case 'CITY_WEATHER_DATA_NOT_FOUND':
       return {
