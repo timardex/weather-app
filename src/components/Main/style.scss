@@ -2,7 +2,7 @@
 
 main {
   width: 100%;
-  max-width: 375px;
+  max-width: $maxWidth;
   margin: auto;
   height: calc(100vh * (8.6 / 11));
   overflow: hidden;
@@ -10,6 +10,11 @@ main {
   position: relative;
   padding: 2rem;
   overflow-y: auto;
+  transition: $transition1;
+
+  &.details-info {
+    background: $color4;
+  }
 
   &.clouds, &.clear {
     background: $color2;
@@ -19,49 +24,25 @@ main {
     background: $color3;
   }
 
-  .refresh {
-    cursor: pointer;
-    position: absolute;
-    top: -3rem; left: 0;
-    svg {
-      fill: $color1;
-    }
-  }
-
-  .unit-change {
-    cursor: pointer;
-    position: absolute;
-    top: -3rem; right: 0;
-  }
-
   .container {
     width: 100%;
-    padding-top: 2.5rem;
-  }
-
-  .more-details {
-    cursor: pointer;
-    display: inline-block;
-    svg {
-      transform: rotate(-90deg);
-    }
+    position: relative;
   }
 
   .weather-bg {
-    margin: 0 -2rem -2rem;
-    width: 120%;
+    width: 100%;
     text-align: center;
+    position: absolute;
+    bottom: 0; left: 0;
 
     svg {
       width: 100%;
-      position: relative;
-      top: 5px;
     }
   }
 
   .weather-data-error {
     position: absolute;
-    left: 0;
+    left: 0; top: 50%;
     width: 100%;
     display: flex;
     justify-content: center;

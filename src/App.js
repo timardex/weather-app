@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-
-import {getGeoLocationData, getGeoLocationWeatherData} from './store/actions';
-
+import {getGeoLocationData, getGeoLocationCurrentWeatherData} from './store/actions';
 import Main from './components/Main';
 
 import './App.scss';
@@ -10,34 +8,26 @@ import './App.scss';
 const App = (props) => {
   const {
     getGeoLocationData,
-    getGeoLocationWeatherData,
+    getGeoLocationCurrentWeatherData,
     latitude,
-    longitude,
-    weatherData} = props;
-
-  const refreshWeatherData = () => {
-    getGeoLocationWeatherData(latitude, longitude);
-  };
+    longitude } = props;
 
   useEffect(() => {
     getGeoLocationData();
     if(latitude && longitude) {
-      getGeoLocationWeatherData(latitude, longitude)
+      getGeoLocationCurrentWeatherData(latitude, longitude)
     }    
-  }, [getGeoLocationData, latitude, longitude, getGeoLocationWeatherData])
+  }, [getGeoLocationData, latitude, longitude, getGeoLocationCurrentWeatherData])
   
   return (
     <div className="App">
-      <Main
-        weatherData={weatherData}
-        refreshWeatherData={refreshWeatherData}/>
+      <Main />
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    weatherData: state.weatherData,
     cityName: state.cityName,
     latitude: state.latitude,
     longitude: state.longitude
@@ -49,8 +39,8 @@ const mapDispatchToProps = (dispatch) => {
     getGeoLocationData: () => {
       dispatch(getGeoLocationData())
     },
-    getGeoLocationWeatherData: (latitude, longitude, tempUnit) => {
-      dispatch(getGeoLocationWeatherData(latitude, longitude, tempUnit))
+    getGeoLocationCurrentWeatherData: (latitude, longitude) => {
+      dispatch(getGeoLocationCurrentWeatherData(latitude, longitude))
     }
   }
 }

@@ -23,7 +23,7 @@ export const getGeoLocationData = () => {
   }
 }
 
-export const getGeoLocationWeatherData = (latitude, longitude) => {
+export const getGeoLocationCurrentWeatherData = (latitude, longitude) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
@@ -44,7 +44,7 @@ export const getGeoLocationWeatherData = (latitude, longitude) => {
   }
 }
 
-export const getCityWeatherData = (city) => {
+export const getCityCurrentWeatherData = (city) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(

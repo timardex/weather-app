@@ -1,0 +1,34 @@
+.details-content {
+  .btn {
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .details {
+    margin: 1rem 0 4rem;
+  }
+
+  .current-details {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-gap: .5rem;
+    grid-template-columns: repeat(2, auto);
+    grid-auto-flow: row;
+
+    li {
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+
+      span {
+        width: 50%;
+
+        &.right {
+          text-align: center;
+        }
+      }
+
+    }
+  }
+}

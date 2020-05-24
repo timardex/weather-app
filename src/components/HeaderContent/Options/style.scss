@@ -1,0 +1,23 @@
+@import '../../../assets/scss/variables.scss';
+
+.options {
+  position: absolute;
+  top: 0; right: 0;
+  z-index: 1;
+
+  svg {
+    fill: $color1;
+  }
+
+  .unit-change {
+    margin-bottom: 1rem;
+  }
+
+  .refresh {
+    text-align: right;
+  }
+
+  div {
+    cursor: pointer;
+  }
+}

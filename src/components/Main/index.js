@@ -1,63 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
 
-import Header from '../Header';
+import HeaderContent from '../HeaderContent';
+import DetailsContent from '../DetailsContent';
 
-import {weatherIcon, weatherBackground} from '../../helpers/'
-import {getCityName} from '../../store/actions';
+import {weatherBackground} from '../../helpers/'
 
 import './style.scss';
 
-const Main = (props) => {
-  const {weatherDataNotFound, weatherData, refreshWeatherData, getCityName} = props;
-  const {weather, main, name/* clouds , sys, clouds, wind */} = weatherData ? weatherData : '';
-  const {temp/* , feels_like, temp_min, temp_max, pressure, humidity */} = main ? main : '';
+import {Animated} from "react-animated-css";
 
+const Main = (props) => {
+  const {currentWeatherData, dataNotFound} = props;
+  const {weather} = currentWeatherData ? currentWeatherData : '';
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
 
   const [moreDetails, getMoreDetails] = useState(false);
-
-  useEffect(() => {
-    getCityName(name)
-  }, [getCityName, name])
   
   return (
-    <main className={getWeatherType}>
+    <main className={!moreDetails ? getWeatherType : 'details-info'}>
       <div className="container">
-        <Header
-          currentCity={name}
-          refreshWeatherData={refreshWeatherData}
-          temperature={temp}
-          weatherIcon={weatherIcon(getWeatherType)}
-          getWeatherType={getWeatherType}
-          getCityName={getCityName}
+        <HeaderContent
           moreDetails={moreDetails}
           getMoreDetails={getMoreDetails}/>
+
+        <Animated animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={moreDetails}>
+          <DetailsContent />
+        </Animated>
       </div>
 
-      {weatherDataNotFound && <div className="weather-data-error">
-        {weatherDataNotFound}
+      {dataNotFound && <div className="weather-data-error">
+        {dataNotFound}
       </div>}
 
-      {!moreDetails && <div className="weather-bg">
+      <Animated className="weather-bg" animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={!moreDetails}>
         {weatherBackground(getWeatherType)}
-      </div>}
+      </Animated>
     </main>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    weatherDataNotFound: state.weatherDataNotFound,
+    currentWeatherData: state.currentWeatherData,
+    dataNotFound: state.dataNotFound,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCityName: (city) => {
-      dispatch(getCityName(city))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, null)(Main);

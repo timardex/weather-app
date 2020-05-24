@@ -1,0 +1,50 @@
+@import '../../assets/scss/variables.scss';
+
+header {
+  height: 250px;
+}  
+
+.header-content {
+  width: 100%;
+  max-width: $maxWidth;
+  position: fixed;
+  top: 8rem; left: 0; right: 0;
+  margin: auto;
+  transition: $transition1;
+
+  &.more-details-shown {
+    top: 6rem;
+
+    .weather-info {
+      .temperature {
+        font-size: 72px;
+        line-height: 4rem;
+      }
+
+      .units {
+        font-size: 36px;
+
+        &:before {
+          border: 3px solid $color1;
+        }
+      }
+    }
+
+    .more-details {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .more-details {
+    cursor: pointer;
+    display: inline-block;
+    svg {
+      position: relative;
+      top: -1px;
+      margin-left: 3px;
+      transform: rotate(-90deg);
+    }
+  }
+}

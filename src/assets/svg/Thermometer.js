@@ -11,8 +11,8 @@ export const Thermometer = () => {
     >
       <mask id="path-1-inside-1" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M8.96456 3C8.72194 1.30385 7.26324 0 5.5 0C3.73676 0 2.27806 1.30385 2.03544 3H2V3.5V19.2572C0.778497 20.266 0 21.7921 0 23.5C0 26.5376 2.46243 29 5.5 29C8.53757 29 11 26.5376 11 23.5C11 21.7921 10.2215 20.266 9 19.2572V3.5V3H8.96456Z"
         />
       </mask>
@@ -28,7 +28,7 @@ export const Thermometer = () => {
         x2="5.5"
         y2="4.5"
         stroke="white"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <line
         x1="2.5"
@@ -36,7 +36,7 @@ export const Thermometer = () => {
         x2="3.5"
         y2="5.5"
         stroke="white"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <line
         x1="2.5"
@@ -44,7 +44,7 @@ export const Thermometer = () => {
         x2="3.5"
         y2="8.5"
         stroke="white"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <line
         x1="2.5"
@@ -52,7 +52,7 @@ export const Thermometer = () => {
         x2="3.5"
         y2="11.5"
         stroke="white"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <line
         x1="2.5"
@@ -60,7 +60,7 @@ export const Thermometer = () => {
         x2="3.5"
         y2="14.5"
         stroke="white"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
     </svg>
   );
