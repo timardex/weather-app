@@ -1,7 +1,24 @@
+@import '../../assets/scss/variables.scss';
+
 .details-content {
-  .btn {
-    cursor: pointer;
-    display: inline-block;
+  .tab {
+    margin-bottom: 1rem;
+    &.active {
+      .btn {
+        svg {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    .btn {
+      cursor: pointer;
+      display: inline-block;
+
+      svg {
+        transition: $transition1;
+      }
+    }
   }
 
   .details {

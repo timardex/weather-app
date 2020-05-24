@@ -13,9 +13,9 @@ const HeaderContent = (props) => {
   return(
     <header>
       <div className={`header-content ${moreDetails ? 'more-details-shown' : ''}`}>
-        <Options toggleTempUnit={toggleTempUnit} setTempUnit={setTempUnit}/>
         <CitySearch />
-        <WeatherInfo toggleTempUnit={toggleTempUnit}/>
+        <Options toggleTempUnit={toggleTempUnit} setTempUnit={setTempUnit}/>
+        <WeatherInfo toggleTempUnit={toggleTempUnit} moreDetails={moreDetails}/>
         
         <p
           className="more-details"

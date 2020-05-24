@@ -15,7 +15,7 @@ const Main = (props) => {
   const {weather} = currentWeatherData ? currentWeatherData : '';
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
 
-  const [moreDetails, getMoreDetails] = useState(false);
+  const [moreDetails, getMoreDetails] = useState(true);
   
   return (
     <main className={!moreDetails ? getWeatherType : 'details-info'}>

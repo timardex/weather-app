@@ -13,10 +13,10 @@ const reducer = (state = {}, action) => {
         cityName: action.payload.cityName,
         dataNotFound: action.payload.error
       }
-    case 'CITY_NAME':
+    case 'CITY_FORECAST_DATA':
       return {
         ...state,
-        cityName: action.payload
+        forecastWeatherData: action.payload
       }
     case 'CITY_WEATHER_DATA':
       return {
@@ -28,6 +28,11 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         dataNotFound: action.payload
+      }
+    case 'CITY_NAME':
+      return {
+        ...state,
+        cityName: action.payload
       }
     default:
       return state

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ApiKey from '../helpers/ApiKey';
 
 export const getGeoLocationData = () => {
   return function (dispatch) {
@@ -27,7 +28,7 @@ export const getGeoLocationCurrentWeatherData = (latitude, longitude) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=6ee8943c317994588d6fa65bc848deae`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${ApiKey}`
       );
       const action = {
         type: 'GEO_LOCATION_WEATHER_DATA',
@@ -48,7 +49,7 @@ export const getCityCurrentWeatherData = (city) => {
   return async function(dispatch) {
     try {
       const result = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=6ee8943c317994588d6fa65bc848deae`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${ApiKey}`
       );
       const action = {
         type: 'CITY_WEATHER_DATA',
@@ -64,6 +65,23 @@ export const getCityCurrentWeatherData = (city) => {
         payload: city === '' ? 'Please enter a city name.' : `No such city like ${city}, please try again.`
       }
       dispatch(action)
+    }
+  }
+}
+
+export const getForecast = (city) => {
+  return async function(dispatch) {
+    try {
+      const result = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${ApiKey}`
+      );
+      const action = {
+        type: 'CITY_FORECAST_DATA',
+        payload: result.data
+      }
+      dispatch(action)
+    } catch (error) {
+      return error;
     }
   }
 }
