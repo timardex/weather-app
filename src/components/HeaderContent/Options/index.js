@@ -9,12 +9,12 @@ const Options = (props) => {
   const {toggleTempUnit, setTempUnit, getGeoLocationCurrentWeatherData, latitude, longitude} = props;
   return (
     <div className="options">
-      <div className="unit-change" onClick={() => setTempUnit(!toggleTempUnit)}>
-        {toggleTempUnit ? 'Fahrenheit' : 'Celsius'}
+      <div className="unit-change">
+        <div onClick={() => setTempUnit(!toggleTempUnit)}>{toggleTempUnit ? 'Fahrenheit' : 'Celsius'}</div>
       </div>
 
-      <div className="refresh" title="Check my weather data" onClick={() => getGeoLocationCurrentWeatherData(latitude, longitude)}>
-        <Refresh />
+      <div className="refresh" title="Check my weather data">
+        <div onClick={() => getGeoLocationCurrentWeatherData(latitude, longitude)}><Refresh /></div>
       </div>
     </div>
   )

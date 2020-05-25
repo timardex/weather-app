@@ -1,19 +1,24 @@
 @import '../../assets/scss/variables.scss';
 
-header {
-  height: 250px;
-}  
-
-.header-content {
+.header {
+  height: 190px;
   width: 100%;
-  max-width: $maxWidth;
+  max-width: 439px;
   position: fixed;
-  top: 8rem; left: 0; right: 0;
+  top: 16%; left: 0; right: 0;
   margin: auto;
-  transition: $transition1;
+  z-index: 10;
+  transition: top .3s linear;
 
   &.more-details-shown {
-    top: 6rem;
+    transition: top .3s linear;
+    top: 4%;
+    
+
+    .header-content {
+      background: $color4;
+      padding: 2rem 2rem 0;
+    }
 
     .weather-info {
       .temperature {
@@ -35,6 +40,16 @@ header {
         transform: rotate(90deg);
       }
     }
+  }
+}
+
+.header-content {
+  padding: 0 2rem;
+  .grid-box {
+    display: grid;
+    grid-gap: .5rem;
+    grid-template-columns: repeat(2, auto);
+    grid-auto-flow: row;
   }
 
   .more-details {

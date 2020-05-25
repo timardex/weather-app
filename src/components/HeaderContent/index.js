@@ -11,11 +11,15 @@ const HeaderContent = (props) => {
   const {moreDetails, getMoreDetails} = props;
   const [toggleTempUnit, setTempUnit] = useState(true);
   return(
-    <header>
-      <div className={`header-content ${moreDetails ? 'more-details-shown' : ''}`}>
-        <CitySearch />
-        <Options toggleTempUnit={toggleTempUnit} setTempUnit={setTempUnit}/>
-        <WeatherInfo toggleTempUnit={toggleTempUnit} moreDetails={moreDetails}/>
+    <header className={`header ${moreDetails ? 'more-details-shown' : ''}`}>
+      <div className="header-content">
+        <div className="grid-box">
+          <div>
+            <CitySearch />
+            <WeatherInfo toggleTempUnit={toggleTempUnit} moreDetails={moreDetails}/>
+          </div>
+          <Options toggleTempUnit={toggleTempUnit} setTempUnit={setTempUnit}/>
+        </div>
         
         <p
           className="more-details"
