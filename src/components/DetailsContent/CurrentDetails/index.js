@@ -1,16 +1,14 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
-import {weatherIcon} from '../../../helpers';
 import {Wind} from '../../../assets/svg/Wind';
 import {Thermometer} from '../../../assets/svg/Thermometer';
 import {Clock} from '../../../assets/svg/Clock';
 
-import TwentyFourHourDetails from '../TwentyFourHourDetails';
+import ForecastDetails from '../ForecastDetails';
 
 const CurrentDetails = (props) => {
-  const {currentWeatherData} = props;
-  const {weather, main, wind} = currentWeatherData ? currentWeatherData : '';
+  const {currentWeather, forecast, weatherIcon} = props;
+  const {weather, main, wind} = currentWeather ? currentWeather : '';
   const {speed} = wind ? wind : '';
   const {pressure, humidity} = main ? main : '';
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
@@ -24,7 +22,7 @@ const CurrentDetails = (props) => {
   
   return (
     <div>
-      <ul className="current-details details">
+      <ul className="current-details">
         {currentDeatils.map((value, key) => {
           return (
             <li key={key}>
@@ -35,15 +33,9 @@ const CurrentDetails = (props) => {
         })}
       </ul>
 
-      <TwentyFourHourDetails />
+      <ForecastDetails forecast={forecast} weatherIcon={weatherIcon} showWind={true} showTime={true} description={'24 - hours forecast'}/>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentWeatherData: state.currentWeatherData,
-  }
-}
-
-export default connect(mapStateToProps, null)(CurrentDetails);
+export default CurrentDetails;

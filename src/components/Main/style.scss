@@ -50,4 +50,27 @@ main {
     z-index: 1;
     background: rgba(0,0,0,.3);
   }
+
+  .animated {
+    transition: $transition1;
+    opacity: 0; visibility: hidden;
+    
+    height: 0;
+    overflow: hidden;
+
+    &.from-left {
+      transform: translate(-100px);
+    }
+
+    &.from-bottom {
+      transform: translateY(100px);
+    }
+
+    &.active {
+      opacity: 1; visibility: visible;
+      transform: none;
+      height: auto;
+      overflow: initial;
+    }
+  }
 }

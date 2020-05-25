@@ -8,14 +8,12 @@ import {weatherBackground} from '../../helpers/'
 
 import './style.scss';
 
-import {Animated} from "react-animated-css";
-
 const Main = (props) => {
   const {currentWeatherData, dataNotFound} = props;
   const {weather} = currentWeatherData ? currentWeatherData : '';
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
 
-  const [moreDetails, getMoreDetails] = useState(true);
+  const [moreDetails, getMoreDetails] = useState(false);
   
   return (
     <main className={!moreDetails ? getWeatherType : 'details-info'}>
@@ -24,18 +22,14 @@ const Main = (props) => {
           moreDetails={moreDetails}
           getMoreDetails={getMoreDetails}/>
 
-        <Animated animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={moreDetails}>
-          <DetailsContent />
-        </Animated>
+        <DetailsContent moreDetails={moreDetails}/>
       </div>
 
       {dataNotFound && <div className="weather-data-error">
         {dataNotFound}
       </div>}
 
-      <Animated className="weather-bg" animationIn="fadeInDown" animationOut="fadeOutUp" isVisible={!moreDetails}>
-        {weatherBackground(getWeatherType)}
-      </Animated>
+      <div className={`weather-bg animated from-left ${!moreDetails ? 'active' : ''}`}>{weatherBackground(getWeatherType)}</div>
     </main>
   )
 }
