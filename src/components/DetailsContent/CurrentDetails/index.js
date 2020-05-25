@@ -16,7 +16,7 @@ const CurrentDetails = (props) => {
   const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
 
   const currentDeatils = [
-    { text: speed + ' km/h', icon: <Wind /> },
+    { text: speed + ' m/sec', icon: <Wind /> },
     { text: pressure, icon: <Thermometer /> },
     { text: getWeatherType, icon: weatherIcon(getWeatherType) },
     { text: humidity, icon: <Clock /> }

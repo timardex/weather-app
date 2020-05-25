@@ -36,7 +36,10 @@
     li {
       display: flex;
       align-items: center;
-      text-transform: capitalize;
+
+      &:nth-child(3) {
+        text-transform: capitalize;
+      }
 
       span {
         width: 50%;

@@ -1,0 +1,85 @@
+@import '../../../assets/scss/variables.scss';
+
+.one-day-forecast {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  position: relative;
+
+  ul {
+    list-style: none;
+    text-align: left;
+
+    li {
+      display: inline-block;
+      position: relative;
+      width: 35px;
+      text-align: center;
+    }
+  }
+
+  .graph {
+    margin: 0;
+    padding: 2rem 0 1rem;
+
+    li {
+      margin-right: 2rem;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+  
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; bottom: -.75rem;
+        margin: auto;
+        background: $color1;
+        width: 10px; height: 10px;
+        border-radius: 50%;
+      }
+
+      .line {
+        background: $color1;
+        width: 75px;
+        height: 1px;
+        display: inline-block;
+        position: absolute;
+        bottom: -8px; left: 15px;
+      }
+    }
+  }
+
+  .weather-type {
+    padding: 0; margin: 0 0 2rem;
+    
+    li {
+      padding: 0 2rem .25rem 0;
+      font-size: 12px;
+      border-bottom: 1px solid $color1;
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      span {
+        display: block;
+
+        &.wind {
+          margin-top: 10px;
+        }
+
+        &.time {
+          position: absolute;
+          left: 0; bottom: -20px;
+          margin: auto;
+          width: 35px;
+        }
+
+        small {
+          display: block;
+        }
+      }
+    }
+  }
+}

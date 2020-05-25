@@ -8,8 +8,8 @@ import './style.scss';
 
 const DetailsContent = () => {
   const tabmenu = [
-    {title: 'Details', icon: <Details />, component: <CurrentDetails />},
-    /* {title: 'Next days', icon: <Details />, component: <NextDaysDetails />}, */
+    {title: 'Details', component: <CurrentDetails />},
+    /* {title: 'Next days', component: <NextDaysDetails />}, */
   ]
 
   const [page, setPage] = useState(0);
@@ -18,7 +18,7 @@ const DetailsContent = () => {
     <div className="details-content">
       {tabmenu.map((value, key) => (
         <div className={`tab ${key === page ? 'active' : ''}`} key={key} >
-          <div className="btn" onClick={() => setPage(key)}>{value.title} {value.icon}</div>
+          <div className="btn" onClick={() => setPage(key)}>{value.title} <Details /></div>
           {key === page && <div className="content">{value.component}</div>}
         </div>
       ))}
