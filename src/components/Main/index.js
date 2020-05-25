@@ -4,14 +4,14 @@ import {connect} from 'react-redux';
 import HeaderContent from '../HeaderContent';
 import DetailsContent from '../DetailsContent';
 
-import {weatherBackground} from '../../helpers/'
+import {weatherBackground, weatherType} from '../../helpers/'
 
 import './style.scss';
 
 const Main = (props) => {
   const {currentWeatherData, dataNotFound} = props;
   const {weather} = currentWeatherData ? currentWeatherData : '';
-  const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
+  const getWeatherType = weatherType(weather);
 
   const [moreDetails, getMoreDetails] = useState(false);
   

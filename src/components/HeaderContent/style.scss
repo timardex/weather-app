@@ -3,18 +3,16 @@
 .header {
   height: 190px;
   width: 100%;
-  max-width: 439px;
+  max-width: $maxWidth + 64px;
   position: fixed;
   top: 16%; left: 0; right: 0;
   margin: auto;
   z-index: 10;
-  transition: top .3s linear;
+  transition: $transition1;
 
   &.more-details-shown {
-    transition: top .3s linear;
-    top: 4%;
-    
-
+    top: 2%;
+  
     .header-content {
       background: $color4;
       padding: 2rem 2rem 0;

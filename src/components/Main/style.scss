@@ -9,7 +9,6 @@ main {
   color: $color1;
   position: relative;
   padding: 2rem;
-  overflow-y: auto;
   transition: $transition1;
 
   &.details-info {
@@ -26,13 +25,17 @@ main {
 
   .container {
     width: 100%;
+    height: 100%;
     position: relative;
+    overflow: hidden;
+    overflow-y: auto;
   }
 
   .weather-bg {
-    width: 120%;
-    margin: -2rem -2rem -2rem;
+    width: 100%;
     text-align: center;
+    position: absolute;
+    left: 0; bottom: 0;
 
     svg {
       width: 100%;
@@ -53,7 +56,6 @@ main {
   .animated {
     transition: $transition1;
     opacity: 0; visibility: hidden;
-    
     height: 0;
     overflow: hidden;
 

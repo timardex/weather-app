@@ -10,11 +10,11 @@ const Options = (props) => {
   return (
     <div className="options">
       <div className="unit-change">
-        <div onClick={() => setTempUnit(!toggleTempUnit)}>{toggleTempUnit ? 'Fahrenheit' : 'Celsius'}</div>
+        <span onClick={() => setTempUnit(!toggleTempUnit)}>{toggleTempUnit ? 'Fahrenheit' : 'Celsius'}</span>
       </div>
 
       <div className="refresh" title="Check my weather data">
-        <div onClick={() => getGeoLocationCurrentWeatherData(latitude, longitude)}><Refresh /></div>
+        <span onClick={() => getGeoLocationCurrentWeatherData(latitude, longitude)}><Refresh /></span>
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import React from 'react';
 import {Wind} from '../../../assets/svg/Wind';
 import {Thermometer} from '../../../assets/svg/Thermometer';
 import {Clock} from '../../../assets/svg/Clock';
-
+import {weatherType} from '../../../helpers/'
 import ForecastDetails from '../ForecastDetails';
 
 const CurrentDetails = (props) => {
@@ -11,7 +11,7 @@ const CurrentDetails = (props) => {
   const {weather, main, wind} = currentWeather ? currentWeather : '';
   const {speed} = wind ? wind : '';
   const {pressure, humidity} = main ? main : '';
-  const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
+  const getWeatherType = weatherType(weather);
 
   const currentDeatils = [
     { text: speed + ' m/sec', icon: <Wind /> },

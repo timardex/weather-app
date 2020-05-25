@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {weatherIcon} from '../../../helpers/';
+import {weatherIcon, weatherType} from '../../../helpers/';
 
 import './style.scss';
 
@@ -8,7 +8,7 @@ const WeatherInfo = (props) => {
   const {currentWeatherData, moreDetails, toggleTempUnit} = props;
   const {weather, main} = currentWeatherData ? currentWeatherData : '';
   const {temp} = main ? main : '';
-  const getWeatherType = weather ? weather.map(value => value.main).toString().toLowerCase() : null;
+  const getWeatherType = weatherType(weather);
 
   const getTemperatureUnit = () => {
     const celsiusToFahrenheit = parseInt((temp * 1.8) + 32);

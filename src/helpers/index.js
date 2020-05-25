@@ -40,3 +40,7 @@ export const weatherBackground = (getWeatherType) => {
       return null
   }
 }
+
+export const weatherType = (type) => {
+  return type ? type.map(value => value.main).toString().toLowerCase().split(',')[0] : null;
+}
