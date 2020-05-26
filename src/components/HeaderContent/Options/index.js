@@ -22,7 +22,7 @@ const Options = (props) => {
         <span onClick={() => toggleUnit(toggleUnitValue)}>Switch to {toggleUnitValue ? 'Celsius' : 'Fahrenheit'}</span>
       </div>
 
-      <div className="refresh" title="Check my weather data">
+      <div className="refresh" title="Refresh my weather data">
         <span onClick={() => handleRefresh()}><Refresh /></span>
       </div>
     </div>
