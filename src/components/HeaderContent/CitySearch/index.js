@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getCityName, getCityCurrentWeatherData} from '../../../store/actions';
 import {Search} from '../../../assets/svg/Search';
+import {Loading} from '../../../assets/svg/Loading';
 
 import './style.scss';
 
 const CitySearch = (props) => {
   const {getCityName, getCityCurrentWeatherData, currentWeatherData} = props;
   const {name} = currentWeatherData ? currentWeatherData : '';
+  const [loaded, setLoaded] = useState(true);
   const [city, findCity] = useState();
 
   useEffect(() => {
@@ -16,15 +18,13 @@ const CitySearch = (props) => {
   }, [name, getCityName])
 
   const handleCitycurrentWeatherData = () => {
-    getCityName(city)
-    getCityCurrentWeatherData(city)
-  }
-
-  /* const [loaded, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(currentWeatherData !== undefined)
-  }, [currentWeatherData]) */
+    setLoaded(false);
+    setTimeout(() => {
+      getCityName(city);
+      getCityCurrentWeatherData(city);
+      setLoaded(true)
+    }, 1000)
+  }  
 
   return (
     <div className="city-search">
@@ -34,6 +34,10 @@ const CitySearch = (props) => {
       <div className="search" onClick={() => handleCitycurrentWeatherData()}>
         <Search />
       </div>
+
+      {!loaded && <div className="loading">
+        <Loading />
+      </div>}
     </div>
   )
 }

@@ -2,12 +2,11 @@
 
 header {
   transition: $transition1;
-  position: relative;
   z-index: 10;
-  top: 2rem;
+  margin-top: 2rem;
 
   &.more-details-shown {
-    top: 0;
+    margin-top: 0;
   
     .header-content {
       background: $color4;
