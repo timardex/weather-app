@@ -17,11 +17,11 @@ const Main = (props) => {
   
   return (
     <main className={!moreDetails ? getWeatherType : 'details-info'}>
-      <div className="container">
-        <HeaderContent
-          moreDetails={moreDetails}
-          getMoreDetails={getMoreDetails}/>
+      <HeaderContent
+        moreDetails={moreDetails}
+        getMoreDetails={getMoreDetails}/>
 
+      <div className="container">
         <DetailsContent moreDetails={moreDetails}/>
       </div>
 

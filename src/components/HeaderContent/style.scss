@@ -1,21 +1,16 @@
 @import '../../assets/scss/variables.scss';
 
 .header {
-  height: 190px;
-  width: 100%;
-  max-width: $maxWidth + 64px;
-  position: fixed;
-  top: 16%; left: 0; right: 0;
-  margin: auto;
-  z-index: 10;
   transition: $transition1;
+  position: relative;
+  z-index: 10;
+  top: 2rem;
 
   &.more-details-shown {
-    top: 2%;
+    top: 0;
   
     .header-content {
       background: $color4;
-      padding: 2rem 2rem 0;
     }
 
     .weather-info {
@@ -42,7 +37,6 @@
 }
 
 .header-content {
-  padding: 0 2rem;
   .grid-box {
     display: grid;
     grid-gap: .5rem;
