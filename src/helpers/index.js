@@ -44,3 +44,9 @@ export const weatherBackground = (getWeatherType) => {
 export const weatherType = (type) => {
   return type ? type.map(value => value.main).toString().toLowerCase().split(',')[0] : null;
 }
+
+export const toggleMetricImperial = (value, toggle) => {
+  const metricToImperial = parseInt((value * 1.8) + 32);
+  const converted = toggle ? metricToImperial : parseInt(value);
+  return converted.toString();
+}

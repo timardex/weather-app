@@ -34,6 +34,11 @@ const reducer = (state = {}, action) => {
         ...state,
         cityName: action.payload
       }
+    case 'TOGGLE_UNIT':
+      return {
+        ...state,
+        toggleUnitValue: !action.payload
+      }
     default:
       return state
   }

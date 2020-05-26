@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
+import {getForecast} from '../../store/actions';
 
 import {Details} from '../../assets/svg/Details';
-import {getForecast} from '../../store/actions';
-import {weatherIcon} from '../../helpers';
-
 import CurrentDetails from './CurrentDetails';
 import ForecastDetails from './ForecastDetails';
 
@@ -26,10 +24,10 @@ const DetailsContent = (props) => {
   const tabmenu = [
     {
       title: 'Details',
-      component: <CurrentDetails weatherIcon={weatherIcon} forecast={oneDayForecast} currentWeather={currentWeatherData}/>},
+      component: <CurrentDetails forecast={oneDayForecast} currentWeather={currentWeatherData}/>},
     {
       title: 'Next days',
-      component: <ForecastDetails weatherIcon={weatherIcon} forecast={getForecastForNoon()} showWind={false} showTime={false} description={''}/>},
+      component: <ForecastDetails forecast={getForecastForNoon()} showWind={false} showTime={false} description={''}/>},
   ]
   const [page, setPage] = useState(0);
 

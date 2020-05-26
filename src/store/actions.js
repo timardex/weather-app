@@ -34,7 +34,7 @@ export const getGeoLocationCurrentWeatherData = (latitude, longitude) => {
         type: 'GEO_LOCATION_WEATHER_DATA',
         payload: {
           success: result.data,
-          cityName: '',
+          cityName: 'London',
           error: ''
         }
       }
@@ -91,6 +91,16 @@ export const getCityName = (city) => {
     const action = {
       type: 'CITY_NAME',
       payload: city
+    }
+    dispatch(action)
+  }
+}
+
+export const toggleUnit = (toggle) => {
+  return function(dispatch) {
+    const action = {
+      type: 'TOGGLE_UNIT',
+      payload: toggle
     }
     dispatch(action)
   }

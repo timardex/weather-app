@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Details} from '../../assets/svg/Details';
 
 import Options from './Options';
@@ -9,16 +9,16 @@ import './style.scss';
 
 const HeaderContent = (props) => {
   const {moreDetails, getMoreDetails} = props;
-  const [toggleTempUnit, setTempUnit] = useState(true);
+  
   return(
     <header className={`header ${moreDetails ? 'more-details-shown' : ''}`}>
       <div className="header-content">
         <div className="grid-box">
           <div>
             <CitySearch />
-            <WeatherInfo toggleTempUnit={toggleTempUnit} moreDetails={moreDetails}/>
+            <WeatherInfo moreDetails={moreDetails}/>
           </div>
-          <Options toggleTempUnit={toggleTempUnit} setTempUnit={setTempUnit}/>
+          <Options />
         </div>
         
         <p

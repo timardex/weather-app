@@ -1,9 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {weatherIcon, toggleMetricImperial} from '../../../helpers';
 
 import './style.scss';
 
 const ForecastDetails = (props) => {
-  const {forecast, weatherIcon, showWind, showTime, description} = props;
+  const {forecast, showWind, showTime, description, toggleUnitValue} = props;
 
   // count difference between temparetures
   const tempGraph = () => {
@@ -20,7 +22,8 @@ const ForecastDetails = (props) => {
       <ul className="graph">
         {forecast.map((parentValue, parentKey) => (
           <li key={parentKey} style={{top: -parseInt(parentValue.main.temp) + 'px'}}>
-            {parseInt(parentValue.main.temp)}
+            {toggleMetricImperial(parentValue.main.temp, toggleUnitValue)}
+
             {tempGraph().map((value, key) => (
               parentKey === key && <span className="line" key={key} style={{transform: `rotate(${value}deg)`}}></span>
             ))}
@@ -33,8 +36,15 @@ const ForecastDetails = (props) => {
             {parentValue.weather.map((value, key) => (
               <span key={key}>{weatherIcon(value.main.toLowerCase())}</span>
             ))}
-            {showWind && <span className="wind">{parentValue.wind.speed} <small>m/sec</small></span>}
+
+            {showWind && 
+              <span className="wind">{toggleMetricImperial(parentValue.wind.speed, toggleUnitValue)}
+                <small>{toggleUnitValue ? ' miles/h' : ' meter/s'}</small>
+              </span>
+            }
+
             {showTime && <span className="time">{parentValue.dt_txt.split(' ').pop().slice(0,5)}</span>}
+
             {!showTime && <span className="date">{parentValue.dt_txt.split(' ').shift().slice(5,10).replace(/-/g, '/')}</span>}
           </li>
         ))}
@@ -43,4 +53,10 @@ const ForecastDetails = (props) => {
   )
 }
 
-export default ForecastDetails;
+const mapStateToProps = (state) => {
+  return {
+    toggleUnitValue: state.toggleUnitValue
+  }
+}
+
+export default connect(mapStateToProps, null)(ForecastDetails);

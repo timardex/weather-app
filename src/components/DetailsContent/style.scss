@@ -1,12 +1,13 @@
 @import '../../assets/scss/variables.scss';
 
 .details-content {
-  padding: 2rem 0 20%;
+  padding: 2rem 0 0;
 
   .tab {
     margin-bottom: 1rem;
     &.active {
       .btn {
+        text-decoration: underline;
         svg {
           transform: rotate(-180deg);
         }
@@ -17,36 +18,13 @@
       cursor: pointer;
       display: inline-block;
 
+      &:hover {
+        text-decoration: underline;
+      }
+
       svg {
         transition: $transition1;
       }
-    }
-  }
-
-  .current-details {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-gap: .5rem;
-    grid-template-columns: repeat(2, auto);
-    grid-auto-flow: row;
-
-    li {
-      display: flex;
-      align-items: center;
-
-      &:nth-child(3) {
-        text-transform: capitalize;
-      }
-
-      span {
-        width: 50%;
-
-        &.right {
-          text-align: center;
-        }
-      }
-
     }
   }
 }
