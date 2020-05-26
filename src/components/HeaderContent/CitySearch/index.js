@@ -10,11 +10,16 @@ const CitySearch = (props) => {
   const {name} = currentWeatherData ? currentWeatherData : '';
   
   const [city, findCity] = useState();
+  const [cityLength, getCityLength] = useState(0)
 
   useEffect(() => {
     findCity(name);
-    getCityName(name)
+    getCityName(name);
   }, [name, getCityName])
+
+  useEffect(() => {
+    getCityLength(city !== undefined ? city.length * 14 : 0)
+  }, [city])
 
   const handleCitycurrentWeatherData = () => {
     setLoaded(false);
@@ -23,11 +28,11 @@ const CitySearch = (props) => {
       getCityCurrentWeatherData(city);
       setLoaded(true)
     }, 1000)
-  }  
+  }
 
   return (
     <div className="city-search">
-      <input type="text" id="search" value={city || ''}
+      <input type="text" id="search" value={city || ''} name="city-search" style={{maxWidth: cityLength}} autoFocus
         onChange={e => findCity(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
         onKeyDown={e => e.keyCode === 13 ? handleCitycurrentWeatherData() : null}/>
       <div className="search" onClick={() => handleCitycurrentWeatherData()}>

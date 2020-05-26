@@ -6,15 +6,15 @@
   align-items: center;
 
   input {
-    width: auto;
-    border: none;
+    border: 1px solid rgba(255,255,255,.5);
     outline: none;
     background-color: transparent;
     color: $color1;
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 700;
-    max-width: 150px;
+    padding: .1rem .5rem;
+    min-width: 50px;
     margin-right: .5rem;
   }
 
