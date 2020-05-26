@@ -27,7 +27,7 @@ const CitySearch = (props) => {
 
   return (
     <div className="city-search">
-      <input type="text" id="search" value={city || 'London'}
+      <input type="text" id="search" value={city || ''}
         onChange={e => findCity(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
         onKeyDown={e => e.keyCode === 13 ? handleCitycurrentWeatherData() : null}/>
       <div className="search" onClick={() => handleCitycurrentWeatherData()}>
