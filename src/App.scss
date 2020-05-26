@@ -16,10 +16,51 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  position: relative;
 
   .loading {
-    
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
   }
 }
 
+@media (orientation:landscape) and (max-width: 992px) {
+  main {
+    max-width: 100%;
+    width: calc(100vh * (11 / 5.7));
+
+    .weather-bg {
+      width: 35%;
+      left: inherit;
+      right: 0;
+    }
+  }
+
+  header {
+    &.more-details-shown {
+      .weather-info {
+        padding: .5rem 0 1.5rem;
+        .temperature {
+          font-size: 45px;
+          line-height: 3rem;
+        }
+  
+        .units {
+          font-size: 26px;
+        }
+
+        .weather-type {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .details-content {
+    padding: 2rem 0;
+  }
+}

@@ -11,7 +11,7 @@ const HeaderContent = (props) => {
   const {moreDetails, getMoreDetails} = props;
   
   return(
-    <header className={`header ${moreDetails ? 'more-details-shown' : ''}`}>
+    <header className={moreDetails ? 'more-details-shown' : ''}>
       <div className="header-content">
         <div className="grid-box">
           <div>

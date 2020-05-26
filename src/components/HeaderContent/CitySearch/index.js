@@ -20,6 +20,12 @@ const CitySearch = (props) => {
     getCityCurrentWeatherData(city)
   }
 
+  /* const [loaded, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(currentWeatherData !== undefined)
+  }, [currentWeatherData]) */
+
   return (
     <div className="city-search">
       <input type="text" id="search" value={city || ''}
