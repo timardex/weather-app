@@ -42,7 +42,7 @@ const DetailsContent = (props) => {
       {tabmenu.map((value, key) => (
         <div className={`tab ${key === page ? 'active' : ''}`} key={key} >
           <div className="btn" onClick={() => setPage(key)}>{value.title} <Details /></div>
-          <div className={`animated from-bottom ${key === page ? 'active' : ''}`}>{value.component}</div>
+          <div>{value.component}</div>
         </div>
       ))}
     </div>

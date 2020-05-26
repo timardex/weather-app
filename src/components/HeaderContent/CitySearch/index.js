@@ -2,14 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {getCityName, getCityCurrentWeatherData} from '../../../store/actions';
 import {Search} from '../../../assets/svg/Search';
-import {Loading} from '../../../assets/svg/Loading';
 
 import './style.scss';
 
 const CitySearch = (props) => {
-  const {getCityName, getCityCurrentWeatherData, currentWeatherData} = props;
+  const {getCityName, getCityCurrentWeatherData, currentWeatherData, setLoaded} = props;
   const {name} = currentWeatherData ? currentWeatherData : '';
-  const [loaded, setLoaded] = useState(true);
+  
   const [city, findCity] = useState();
 
   useEffect(() => {
@@ -28,16 +27,12 @@ const CitySearch = (props) => {
 
   return (
     <div className="city-search">
-      <input type="text" id="search" value={city || ''}
+      <input type="text" id="search" value={city || 'London'}
         onChange={e => findCity(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
         onKeyDown={e => e.keyCode === 13 ? handleCitycurrentWeatherData() : null}/>
       <div className="search" onClick={() => handleCitycurrentWeatherData()}>
         <Search />
       </div>
-
-      {!loaded && <div className="loading">
-        <Loading />
-      </div>}
     </div>
   )
 }

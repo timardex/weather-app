@@ -2,15 +2,13 @@
 
 header {
   transition: $transition1;
-  z-index: 10;
+  position: relative;
+  z-index: 1;
   margin-top: 2rem;
 
   &.more-details-shown {
     margin-top: 0;
-  
-    .header-content {
-      background: $color4;
-    }
+    margin-bottom: 1rem;
 
     .weather-info {
       .temperature {
@@ -46,6 +44,7 @@ header {
   .more-details {
     cursor: pointer;
     display: inline-block;
+
     svg {
       position: relative;
       top: -1px;

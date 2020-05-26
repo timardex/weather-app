@@ -27,21 +27,20 @@ const Main = (props) => {
         <Loading />
       </div>}
 
-      {loaded && <div>
-        <HeaderContent
-          moreDetails={moreDetails}
-          getMoreDetails={getMoreDetails}/>
+      <HeaderContent
+        moreDetails={moreDetails}
+        getMoreDetails={getMoreDetails}
+        setLoaded={setLoaded}/>
 
-        <div className="container">
-          <DetailsContent moreDetails={moreDetails}/>
-        </div>
+      <div className="container">
+        <DetailsContent moreDetails={moreDetails}/>
+      </div>
 
-        {dataNotFound && <div className="weather-data-error">
-          {dataNotFound}
-        </div>}
-
-        <div className={`weather-bg animated from-left ${!moreDetails ? 'active' : ''}`}>{weatherBackground(getWeatherType)}</div>
+      {dataNotFound && <div className="weather-data-error">
+        {dataNotFound}
       </div>}
+
+      <div className={`weather-bg animated from-left ${!moreDetails ? 'active' : ''}`}>{weatherBackground(getWeatherType)}</div>
     </main>
   )
 }

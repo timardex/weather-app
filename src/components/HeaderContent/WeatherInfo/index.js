@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {weatherIcon, weatherType, toggleMetricImperial} from '../../../helpers/';
+import {weatherIcon, weatherType, toggleTemperature} from '../../../helpers/';
 
 import './style.scss';
 
@@ -12,7 +12,7 @@ const WeatherInfo = (props) => {
   
   return (
     <div className="weather-info">
-      <div className="temperature">{toggleMetricImperial(temp, toggleUnitValue)}</div>
+      <div className="temperature">{toggleTemperature(temp, toggleUnitValue)}</div>
       <div className="units">
         {toggleUnitValue ? 'F' : 'C'}
         {!moreDetails && weatherIcon(getWeatherType)}

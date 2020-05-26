@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {weatherType, weatherIcon, toggleMetricImperial} from '../../../helpers/'
+import {weatherType, weatherIcon, toggleSpeed} from '../../../helpers/'
 import ForecastDetails from '../ForecastDetails';
 
 import {Wind} from '../../../assets/svg/Wind';
@@ -17,7 +17,7 @@ const CurrentDetails = (props) => {
   const getWeatherType = weatherType(weather);
 
   const currentDeatils = [
-    { text: toggleMetricImperial(speed, toggleUnitValue) + `${toggleUnitValue ? ' miles/h' : ' meter/s'}`, icon: <Wind /> },
+    { text: toggleSpeed(speed, toggleUnitValue) + `${toggleUnitValue ? ' miles/h' : ' meter/s'}`, icon: <Wind /> },
     { text: pressure, icon: <Thermometer /> },
     { text: getWeatherType, icon: weatherIcon(getWeatherType) },
     { text: humidity + '%', icon: <Clock /> }
@@ -25,7 +25,7 @@ const CurrentDetails = (props) => {
   
   return (
     <div>
-      <ul className="current-details">
+      <ul className="current-details forecast">
         {currentDeatils.map((value, key) => {
           return (
             <li key={key}>

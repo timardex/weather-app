@@ -8,17 +8,16 @@ import WeatherInfo from './WeatherInfo';
 import './style.scss';
 
 const HeaderContent = (props) => {
-  const {moreDetails, getMoreDetails} = props;
-  
+  const {moreDetails, getMoreDetails, setLoaded} = props;  
   return(
     <header className={moreDetails ? 'more-details-shown' : ''}>
       <div className="header-content">
         <div className="grid-box">
           <div>
-            <CitySearch />
+            <CitySearch setLoaded={setLoaded}/>
             <WeatherInfo moreDetails={moreDetails}/>
           </div>
-          <Options />
+          <Options setLoaded={setLoaded}/>
         </div>
         
         <p

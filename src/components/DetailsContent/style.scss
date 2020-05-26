@@ -1,29 +1,22 @@
 @import '../../assets/scss/variables.scss';
 
 .details-content {
-  padding: 2rem 0 0;
+  padding-right: .5rem;
+  padding-bottom: 2rem;
 
   .tab {
     margin-bottom: 1rem;
-    &.active {
-      .btn {
-        text-decoration: underline;
-        svg {
-          transform: rotate(-180deg);
-        }
-      }
-    }
 
     .btn {
       cursor: pointer;
       display: inline-block;
+      text-decoration: underline;
+    }
 
-      &:hover {
-        text-decoration: underline;
-      }
-
-      svg {
-        transition: $transition1;
+    &:last-of-type {
+      margin-bottom: 0;
+      .forecast {
+        margin-bottom: 0;
       }
     }
   }

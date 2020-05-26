@@ -20,7 +20,7 @@ export const weatherIcon = (getWeatherType) => {
     case 'clear':
         return <Sun />
     default:
-      return null
+      return <Sun />
   }
 }
 
@@ -37,7 +37,7 @@ export const weatherBackground = (getWeatherType) => {
     case 'clear':
         return <SunBig />
     default:
-      return null
+      return <SunBig />
   }
 }
 
@@ -45,8 +45,14 @@ export const weatherType = (type) => {
   return type ? type.map(value => value.main).toString().toLowerCase().split(',')[0] : null;
 }
 
-export const toggleMetricImperial = (value, toggle) => {
-  const metricToImperial = parseInt((value * 1.8) + 32);
-  const converted = toggle ? metricToImperial : parseInt(value);
-  return converted.toString();
+export const toggleTemperature = (value, toggle) => {
+  const celsiusToFahrenheit = parseInt((value * 1.8) + 32);
+  const converted = toggle ? celsiusToFahrenheit : parseInt(value);
+  return value !== undefined ? converted.toString() : '22';
+}
+
+export const toggleSpeed = (value, toggle) => {
+  const kmToMiles = parseInt(value * 1.6093);
+  const converted = toggle ? kmToMiles : parseInt(value);
+  return value !== undefined ? converted.toString() : '';
 }

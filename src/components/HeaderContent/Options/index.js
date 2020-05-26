@@ -6,15 +6,24 @@ import {Refresh} from '../../../assets/svg/Refresh';
 import './style.scss';
 
 const Options = (props) => {
-  const {toggleUnitValue, toggleUnit, getGeoLocationCurrentWeatherData, latitude, longitude} = props;
+  const {toggleUnitValue, toggleUnit, getGeoLocationCurrentWeatherData, latitude, longitude, setLoaded} = props;
+
+  const handleRefresh = () => {
+    setLoaded(false);
+    setTimeout(() => {
+      getGeoLocationCurrentWeatherData(latitude, longitude);
+      setLoaded(true);
+    }, 1000)
+  }
+
   return (
     <div className="options">
       <div className="unit-change">
-        <span onClick={() => toggleUnit(toggleUnitValue)}>{toggleUnitValue ? 'Celsius' : 'Fahrenheit'}</span>
+        <span onClick={() => toggleUnit(toggleUnitValue)}>Switch to {toggleUnitValue ? 'Celsius' : 'Fahrenheit'}</span>
       </div>
 
       <div className="refresh" title="Check my weather data">
-        <span onClick={() => getGeoLocationCurrentWeatherData(latitude, longitude)}><Refresh /></span>
+        <span onClick={() => handleRefresh()}><Refresh /></span>
       </div>
     </div>
   )

@@ -1,11 +1,14 @@
 @import '../../../assets/scss/variables.scss';
 
 .forecast {
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
   position: relative;
-  margin: 2rem 0;
+  margin: 1rem 0 2.5rem;
+
+  .forecast-inner {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
 
   ul {
     list-style: none;
